@@ -16,3 +16,12 @@ Run the application in SongApplication.
 Then visit http://localhost:8080/hello to see the welcome message.
 Then visit http://localhost:8080/capitalize/{this is Kinda Capitalized} to see the calpitalized words.
 Then visit http://localhost:8080/albums to see the list of album information.
+
+### Add an album to database
+From http://localhost:8080/albums, add these example inputs in the form.
+Title = Any Song
+Artist = Zico
+Song Count = 12
+Length = 215000
+Image URL = https://1409791524.rsc.cdn77.org/data/thumbs/full/540454/650/0/0/0/zico-unveils-new-concept-concept-photo.jpg
+Then the album will be displayed on top of the page.
