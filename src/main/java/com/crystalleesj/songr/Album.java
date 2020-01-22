@@ -1,6 +1,16 @@
 package com.crystalleesj.songr;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Album {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long albumId;
+
     private String title;
     private String artist;
     private int songCount;
@@ -15,15 +25,19 @@ public class Album {
         this.imageURL = imageURL;
     }
 
+    public Album() {}
+
 //    REF - https://coderanch.com/t/515213/engineering/JUnit-tests-Getters-Setters
+
+    public long getAlbumId() {
+        return albumId;
+    }
 
     public String getTitle() {
         return title;
     }
 
-    public String getArtist() {
-        return artist;
-    }
+    public String getArtist() { return artist; }
 
     public int getSongCount() {
         return songCount;
