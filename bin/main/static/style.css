@@ -10,3 +10,7 @@ body {
 p {
   color: beige;
 }
+
+ul {
+list-style-type: none;
+}
