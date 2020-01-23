@@ -9,12 +9,17 @@
 <h1>Album List</h1>
 <h2>These are list of some of my favorite songs.</h2>
 <ul>
-    <li th:each="album : ${albums}" >
+    <li th:each="album : ${albums}">
         <p th:text="${album.title}"></p>
         <img th:src="${album.imageURL}" alt="album image">
         <p><span th:text="${album.artist}"></span></p>
         <p>Song Count: <span th:text="${album.songCount}"></span></p>
         <p>Length of album in second: <span th:text="${album.length}"></span></p>
+
+<!--        Remove an album-->
+        <form th:action="'/albums/delete/' + ${album.albumId}" method="post">
+            <button type="submit">Remove</button>
+        </form>
     </li>
 </ul>
 

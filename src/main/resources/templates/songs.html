@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Album with Songs</title>
+</head>
+<body>
+<!--    <span th:each="album : ${albums}"></span>-->
+    <h1><span th:text="${albums.title}"></span></h1>
+    <h3>Artist: <span th:text="${albums.artist}"></span></h3>
+    <h3>Song count: <span th:text="${albums.songCount}"></span></h3>
+    <h3>Songs in this Album</h3>
+    <ul>
+        <li th:each="song : ${songs}">
+            <p>Title: <span th:text="${song.title}"></span></p>
+        </li>
+    </ul>
+<!--    Add a song-->
+    <form action="/songs" method="post">
+        <h4>Add a song</h4>
+        <input type="hidden" th:value="${albums.albumId}" name="albumId">
+        Title:<br>
+        <input type="text" name="title" required>
+        <br>
+        Length:<br>
+        <input type="number" name="length" required>
+        <br>
+        Track Number:<br>
+        <input type="text" name="trackNumber" required>
+        <br>
+        <input type="submit" value="Add a song">
+    </form>
+
+<!--            Remove an album-->
+    <form th:action="'/albums/delete/' + ${album.albumId}" method="post">
+        <button type="submit">Remove</button>
+    </form>
+</body>
+</html>

@@ -37,13 +37,15 @@ public class HelloController {
     @Autowired
     AlbumRepository albumRepository;
 
+    @Autowired
+    SongRepository songRepository;
+
     @GetMapping("/albums")
     public String getAlbums(Model m) {
         List<Album> albums = albumRepository.findAll();
         m.addAttribute("albums", albums);
         return "albums";
     }
-
 
     @PostMapping("/albums")
     public RedirectView postAlbum(String title, String artist, int songCount, int length, String imageURL) {
@@ -52,5 +54,42 @@ public class HelloController {
         return new RedirectView("/albums");
     }
 
+    @GetMapping("/albums/{albumId}")
+    public String getOneAlbum(@PathVariable long albumId, Model m) {
+        System.out.println("------------------ALBUM BY ID!! ");
+        Album myAlbum = albumRepository.getOne(albumId);
+        m.addAttribute("albums", myAlbum);
 
+        List<Song> songs = songRepository.findByAlbum(myAlbum);
+
+        m.addAttribute("songs", songs);
+        return "songs";
+    }
+
+
+//    @PostMapping("/albums/delete/{albumId}")
+//    public RedirectView deleteAlbum(@PathVariable long albumId) {
+//        System.out.println("------------------albumId = " + albumId);
+//        albumRepository.deleteById(albumId);
+//        return new RedirectView("/albums");
+//    }
+
+    @PostMapping("/songs")
+    public RedirectView addSong(long albumId, String title, int length, int trackNumber) {
+        Album myAlbum = albumRepository.getOne(albumId);
+        Song newSong = new Song(title, length, trackNumber);
+        newSong.album = myAlbum;
+        songRepository.save(newSong);
+        return new RedirectView("/songs");
+    }
+
+//    @GetMapping("/albums/{albumId}")
+//    public String getSongs(@PathVariable long albumId, Model m) {
+//        System.out.println("------------------SONGS!! ");
+//        Album myAlbum = albumRepository.getOne(albumId);
+//
+//        List<Song> songs = songRepository.findAll();
+//        m.addAttribute("album", songs);
+//        return "songs";
+//    }
 }
