@@ -11,7 +11,8 @@
 <ul>
     <li th:each="album : ${albums}">
         <p th:text="${album.title}"></p>
-        <img th:src="${album.imageURL}" alt="album image">
+        <a th:href="'/albums/' + ${album.albumId}"><img th:src="${album.imageURL}" alt="album image"></a>
+        <p>ID: <span th:text="${album.albumId}"></span></p>
         <p><span th:text="${album.artist}"></span></p>
         <p>Song Count: <span th:text="${album.songCount}"></span></p>
         <p>Length of album in second: <span th:text="${album.length}"></span></p>
@@ -20,6 +21,7 @@
         <form th:action="'/albums/delete/' + ${album.albumId}" method="post">
             <button type="submit">Remove</button>
         </form>
+
     </li>
 </ul>
 

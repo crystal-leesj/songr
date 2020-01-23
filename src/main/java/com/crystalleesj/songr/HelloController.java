@@ -56,9 +56,8 @@ public class HelloController {
 
     @GetMapping("/albums/{albumId}")
     public String getOneAlbum(@PathVariable long albumId, Model m) {
-        System.out.println("------------------ALBUM BY ID!! ");
         Album myAlbum = albumRepository.getOne(albumId);
-        m.addAttribute("albums", myAlbum);
+        m.addAttribute("album", myAlbum);
 
         List<Song> songs = songRepository.findByAlbum(myAlbum);
 
@@ -67,12 +66,11 @@ public class HelloController {
     }
 
 
-//    @PostMapping("/albums/delete/{albumId}")
-//    public RedirectView deleteAlbum(@PathVariable long albumId) {
-//        System.out.println("------------------albumId = " + albumId);
-//        albumRepository.deleteById(albumId);
-//        return new RedirectView("/albums");
-//    }
+    @PostMapping("/albums/delete/{albumId}")
+    public RedirectView deleteAlbum(@PathVariable long albumId) {
+        albumRepository.deleteById(albumId);
+        return new RedirectView("/albums");
+    }
 
     @PostMapping("/songs")
     public RedirectView addSong(long albumId, String title, int length, int trackNumber) {
@@ -80,16 +78,7 @@ public class HelloController {
         Song newSong = new Song(title, length, trackNumber);
         newSong.album = myAlbum;
         songRepository.save(newSong);
-        return new RedirectView("/songs");
+        return new RedirectView("/albums/" + albumId);
     }
 
-//    @GetMapping("/albums/{albumId}")
-//    public String getSongs(@PathVariable long albumId, Model m) {
-//        System.out.println("------------------SONGS!! ");
-//        Album myAlbum = albumRepository.getOne(albumId);
-//
-//        List<Song> songs = songRepository.findAll();
-//        m.addAttribute("album", songs);
-//        return "songs";
-//    }
 }

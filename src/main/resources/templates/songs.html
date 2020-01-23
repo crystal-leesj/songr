@@ -6,9 +6,9 @@
 </head>
 <body>
 <!--    <span th:each="album : ${albums}"></span>-->
-    <h1><span th:text="${albums.title}"></span></h1>
-    <h3>Artist: <span th:text="${albums.artist}"></span></h3>
-    <h3>Song count: <span th:text="${albums.songCount}"></span></h3>
+    <h1><span th:text="${album.title}"></span></h1>
+    <h3>Artist: <span th:text="${album.artist}"></span></h3>
+    <h3>Song count: <span th:text="${album.songCount}"></span></h3>
     <h3>Songs in this Album</h3>
     <ul>
         <li th:each="song : ${songs}">
@@ -18,7 +18,7 @@
 <!--    Add a song-->
     <form action="/songs" method="post">
         <h4>Add a song</h4>
-        <input type="hidden" th:value="${albums.albumId}" name="albumId">
+        <input type="hidden" th:value="${album.albumId}" name="albumId">
         Title:<br>
         <input type="text" name="title" required>
         <br>
@@ -32,8 +32,8 @@
     </form>
 
 <!--            Remove an album-->
-    <form th:action="'/albums/delete/' + ${album.albumId}" method="post">
-        <button type="submit">Remove</button>
-    </form>
+<!--    <form th:action="'/albums/delete/' + ${album.albumId}" method="post">-->
+<!--        <button type="submit">Remove</button>-->
+<!--    </form>-->
 </body>
 </html>
