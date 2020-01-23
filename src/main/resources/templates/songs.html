@@ -5,7 +5,9 @@
     <title>Album with Songs</title>
 </head>
 <body>
-<!--    <span th:each="album : ${albums}"></span>-->
+    <nav>
+        <a href="/albums">Album Home page</a> |
+    </nav>
     <h1><span th:text="${album.title}"></span></h1>
     <h3>Artist: <span th:text="${album.artist}"></span></h3>
     <h3>Song count: <span th:text="${album.songCount}"></span></h3>
@@ -13,6 +15,7 @@
     <ul>
         <li th:each="song : ${songs}">
             <p>Title: <span th:text="${song.title}"></span></p>
+            <p>Track Number: <span th:text="${song.trackNumber}"></span></p>
         </li>
     </ul>
 <!--    Add a song-->
