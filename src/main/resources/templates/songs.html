@@ -15,6 +15,7 @@
     <ul>
         <li th:each="song : ${songs}">
             <p>Title: <span th:text="${song.title}"></span></p>
+            <p>Track Number: <span th:text="${song.trackNumber}"></span></p>
         </li>
     </ul>
 <!--    Add a song-->
