@@ -17,6 +17,10 @@ Then visit http://localhost:8080/hello to see the welcome message.
 Then visit http://localhost:8080/capitalize/{this is Kinda Capitalized} to see the calpitalized words.
 Then visit http://localhost:8080/albums to see the list of album information.
 
+### View all albums from database
+
+Visit http://localhost:8080/albums
+
 ### Add an album to database
 From http://localhost:8080/albums, add these example inputs in the form.
 Title = Any Song
@@ -25,3 +29,14 @@ Song Count = 12
 Length = 215000
 Image URL = https://1409791524.rsc.cdn77.org/data/thumbs/full/540454/650/0/0/0/zico-unveils-new-concept-concept-photo.jpg
 Then the album will be displayed on top of the page.
+
+### View a song to database
+
+Click to an album image, then it will show all the songs to assoicated with that album.
+For example, the url will be From http://localhost:8080/albums/{albumId}
+
+### Add a song to database
+
+From http://localhost:8080/albums/{albumId}, there is a form that user can add a song.
+After submitting the form, it will redirect to the same page.
+
